@@ -1,0 +1,57 @@
+# Task Manager - To-Do List
+
+task_list = {}
+
+def display_tasks():
+    """Show all tasks"""
+    if not task_list:
+        print("\nNo tasks yet!")
+    else:
+        print("\nYour Tasks:")
+        for key, value in task_list.items():
+            print(f"{key}: {value}")
+
+def add_task():
+    """Add a new task"""
+    num = len(task_list) + 1
+    task = input("Enter task: ").strip()
+    if task:
+        task_list[num] = task
+        print("Task saved!")
+    else:
+        print("You must enter something!")
+
+def delete_task():
+    """Delete task by number"""
+    display_tasks()
+    if task_list:
+        try:
+            num = int(input("Which task to remove? "))
+            if num in task_list:
+                del task_list[num]
+                print("Deleted successfully!")
+            else:
+                print("Wrong number!")
+        except ValueError:
+            print("Enter a number only!")
+
+def menu():
+    """Main menu"""
+    while True:
+        print("\n1 - See Tasks\n2 - Add Task\n3 - Delete Task\n4 - Exit")
+        choice = input("Select option: ").strip()
+
+        if choice == "1":
+            display_tasks()
+        elif choice == "2":
+            add_task()
+        elif choice == "3":
+            delete_task()
+        elif choice == "4":
+            print("Exiting program...")
+            break
+        else:
+            print("Invalid choice!")
+
+if __name__ == "__main__":
+    menu()
